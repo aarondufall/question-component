@@ -3,9 +3,13 @@ module QuestionComponent
     include Schema::DataStructure
 
     attribute :id, String
+    attribute :title, String
+    attribute :details, String
+    attribute :tags, Array
+    attribute :asked_time, Time
 
-    # TODO Implement attributes
-    # TODO Implement entity logic, predicates, mutations, calculations, etc?
-    # Note: This class's methods should pertain to its attributes
+    def asked?
+      !asked_time.nil?
+    end
   end
 end

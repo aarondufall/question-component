@@ -1,7 +1,7 @@
 require 'eventide/postgres'
 
-# require 'question_component/messages/commands/...'
-# require 'question_component/messages/events/...'
+require 'question_component/messages/commands/ask'
+require 'question_component/messages/events/asked'
 
 require 'question_component/question'
 require 'question_component/projection'

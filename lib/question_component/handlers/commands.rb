@@ -19,26 +19,24 @@ module QuestionComponent
 
       category :question
 
-      # TODO Implement command handler block
-      # eg:
-      # handle DoSomething do |do_something|
-      #   question_id = do_something.question_id
+      handle Ask do |ask|
+        question_id = ask.question_id
 
-      #   question, version = store.fetch(question_id, include: :version)
+        question, version = store.fetch(question_id, include: :version)
 
-      #   if question.something_happened?
-      #     logger.info(tag: :ignored) { "Command ignored (Command: #{do_something.message_type}, Question ID: #{question_id})" }
-      #     return
-      #   end
+        if question.asked?
+          logger.info(tag: :ignored) { "Command ignored (Command: #{ask.message_type}, Question ID: #{question_id})" }
+          return
+        end
 
-      #   something_happened = SomethingHappened.follow(do_something)
+        asked = Asked.follow(ask)
 
-      #   something_happened.processed_time = clock.iso8601
+        asked.processed_time = clock.iso8601
 
-      #   stream_name = stream_name(question_id)
+        stream_name = stream_name(question_id)
 
-      #   write.(something_happened, stream_name, expected_version: version)
-      # end
+        write.(asked, stream_name, expected_version: version)
+      end
     end
   end
 end
