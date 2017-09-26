@@ -5,7 +5,10 @@ module QuestionComponent
         question = QuestionComponent::Question.build
 
         question.id = self.id
-        question.something_happened_time = Time::Effective::Raw.example
+        question.title = self.title
+        question.details = self.details
+        question.tags = self.tags
+        question.asked_time = Time::Effective::Raw.example
 
         question
       end
@@ -16,6 +19,18 @@ module QuestionComponent
 
       def self.id_increment
         1111
+      end
+
+      def self.title
+        'some_title'
+      end
+
+      def self.details
+        'some_detail'
+      end
+
+      def self.tags
+        ['some_tag']
       end
 
       module New

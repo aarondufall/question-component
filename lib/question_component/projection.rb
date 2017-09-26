@@ -5,16 +5,17 @@ module QuestionComponent
 
     entity_name :question
 
-    # TODO Implement event projection blocks
-    # eg:
-    # apply SomethingHappened do |something_happened|
-    #   SetAttributes.(question, something_happened, copy: [
-    #     { :question_id => :id }
-    #   ])
+    apply Asked do |asked|
+      SetAttributes.(question, asked, copy: [
+        { :question_id => :id },
+        :title,
+        :details,
+        :tags
+      ])
 
-    #   something_happened_time = Clock.parse(something_happened.time)
+      asked_time = Clock.parse(asked.time)
 
-    #   question.something_happened_time = something_happened_time
-    # end
+      question.asked_time = asked_time
+    end
   end
 end
