@@ -8,8 +8,11 @@ require 'question_component/controls/message'
 require 'question_component/controls/version'
 
 require 'question_component/controls/question'
+require 'question_component/controls/question/answer'
 require 'question_component/controls/profile'
 
 require 'question_component/controls/commands/ask'
+require 'question_component/controls/commands/answer'
 
 require 'question_component/controls/events/asked'
+require 'question_component/controls/events/answered'
