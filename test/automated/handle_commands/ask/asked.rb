@@ -2,7 +2,7 @@ require_relative '../../automated_init'
 
 context "Handle Commands" do
   context "Ask" do
-    context "Opened" do
+    context "Asked" do
       handler = Handlers::Commands.new
 
       processed_time = Controls::Time::Processed::Raw.example

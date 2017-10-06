@@ -16,20 +16,20 @@ module QuestionComponent
       end
 
       def call(question_id:, profile_id:, title:, details:, tags: nil, reply_stream_name: nil, previous_message: nil)
-        question = self.class.build_message(Messages::Commands::Ask, previous_message)
+        ask = self.class.build_message(Messages::Commands::Ask, previous_message)
 
-        question.question_id = question_id
-        question.profile_id = profile_id
-        question.title = title
-        question.details = details
-        question.tags = tags
-        question.time = clock.iso8601
+        ask.question_id = question_id
+        ask.profile_id = profile_id
+        ask.title = title
+        ask.details = details
+        ask.tags = tags
+        ask.time = clock.iso8601
 
         stream_name = command_stream_name(question_id)
 
-        write.(question, stream_name, reply_stream_name: reply_stream_name)
+        write.(ask, stream_name, reply_stream_name: reply_stream_name)
 
-        question
+        ask
       end
     end
   end

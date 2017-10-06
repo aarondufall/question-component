@@ -17,5 +17,11 @@ module QuestionComponent
 
       question.asked_time = asked_time
     end
+
+    apply Answered do |answered|
+      answered_time = Clock.parse(answered.time)
+
+      question.answer(answered.answer_id, answered.body, answered_time)
+    end
   end
 end

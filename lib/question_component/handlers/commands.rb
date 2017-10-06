@@ -37,6 +37,20 @@ module QuestionComponent
 
         write.(asked, stream_name, expected_version: version)
       end
+
+      handle Answer do |answer|
+        question_id = answer.question_id
+
+        question, version = store.fetch(question_id, include: :version)
+
+        answered = Answered.follow(answer)
+
+        answered.processed_time = clock.iso8601
+
+        stream_name = stream_name(question_id)
+
+        write.(answered, stream_name, expected_version: version)
+      end
     end
   end
 end
